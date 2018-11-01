@@ -4,6 +4,8 @@ $(function() {
   var list = [];
  var number = 0;
 
+//  creates default button for search
+
   function mainButtons() {
     $("#manyButtons").empty();
 
@@ -13,7 +15,7 @@ $(function() {
       );
     }
   }
-
+// get from API and add giphs and posters to the main screen
   function imageScreen(choice, count) {
     // $("#images").empty();
 
@@ -75,6 +77,7 @@ $(function() {
     });
   }
 
+    // add img to favorite and store in sessionStorage
   function favoriteFunct(yourChoice) {
     var blabla;
     
@@ -106,7 +109,7 @@ $(function() {
     sessionStorage.setItem("something", JSON.stringify(list));
     number++;
   }
-
+// using for additional button creation
   $("#buttonCreator").click(function(e) {
     e.preventDefault();
 
@@ -114,7 +117,7 @@ $(function() {
     allTopics.push(addButton);
     mainButtons();
   });
-
+// when additional button pressed add new img
   $(document).on("click", ".create", function(e) {
     e.preventDefault();
     var choice = $(this).text();
@@ -125,6 +128,7 @@ $(function() {
     }
   });
 
+  // make giph static or animate
   $(document).on("click", ".imgAnimate", function(e) {
     e.preventDefault();
     var src = $(this).attr("src");
@@ -135,16 +139,17 @@ $(function() {
     }
   });
 
+  // pressed button adds img to favorite
   $(document).on("click", ".fav", function(e) {
     e.preventDefault();
     var yourChoice = $(this);
     favoriteFunct(yourChoice);
   });
-
+// main function calls
   mainButtons();
-
+// retrieve data from sessionStorage
   bubble = JSON.parse(sessionStorage.getItem("something"));
-  if (bubble != null) {
+  if (bubble != undefined) {
     bubble.forEach(function(list) {
       var blaca = $('<div class="size"><img src="' + list + '"></div>');
       $("#fav").removeClass("hide");
